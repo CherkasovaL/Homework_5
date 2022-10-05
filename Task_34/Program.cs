@@ -1,34 +1,41 @@
 ﻿// Задача 34: Задайте массив заполненный случайными положительными трёхзначными числами. Напишите программу, которая покажет количество чётных чисел в массиве.
 
-Console.WriteLine("Введите размер массива");
-int size = Convert.ToInt32(Console.ReadLine());
-int[] numbers = new int[size];
-Random(numbers);
-Console.WriteLine("");
-PrintArray(numbers);
-int count = 0;
-
-for (int a = 0; a < numbers.Length; a++)
-if (numbers[a] % 2 == 0)
-count++;
-
-Console.WriteLine($"Всего {count} чётных числа");
-
-void Random(int[] numbers)
+void FillArray(double[] arr)
 {
-    for(int i = 0; i < numbers.Length; i++)
+    for (int i = 0; i < arr.Length; i++)
     {
-        numbers[i] = new Random().Next(100,999);
+        arr[i] = new Random().Next(0, 100);
     }
 }
-void PrintArray(int[] numbers)
+
+void PrintArray(double[] arr)
 {
-    Console.Write("");
-    for(int i = 0; i < numbers.Length; i++)
+    for (int i = 0; i < arr.Length; i++)
     {
-        Console.Write(numbers[i] + " ");
+        Console.Write(arr[i] + " ");
     }
-    Console.Write("");
     Console.WriteLine();
 }
 
+double DifferenceMaxMinArrayElements(double[] arr)
+{
+    double max = arr[0];
+    double min = arr[0];
+    for (int i = 1; i < arr.Length; i++)
+    {
+        if (arr[i] > max )
+        {
+            max = arr[i];
+        }
+        if (arr[i] < min )
+        {
+            min = arr[i];
+        }
+    }
+    return max-min;
+}
+
+double[] array = new double[4];
+FillArray(array);
+PrintArray(array);
+Console.WriteLine("Разница между максимальным и минимальным элементами массива: " + DifferenceMaxMinArrayElements(array));
